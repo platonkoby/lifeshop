@@ -1,0 +1,47 @@
+.list-item {
+    all: inherit;
+    margin: 0 10px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-body{
+    width: inherit;
+    height: 80px;
+    padding: 10px 5px;
+    border: 3px solid transparent;
+    background-color: rgb(206, 253, 159);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.item-name {
+    font-size: 1.2rem;
+}
+
+.sum {
+    color: lightgreen;
+    font-size: 1.2rem;
+}
+
+.count-cirle {
+    position: relative;
+    font-size: 16px;
+    width: 25px;
+    height: 25px;
+    top: 15px;
+    right: -70px;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: rgb(107, 107, 107);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

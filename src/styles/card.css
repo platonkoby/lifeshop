@@ -1,0 +1,15 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card-question {
+    font-weight: 500;
+}
+
+.card-text {
+    /* letter-spacing: 2px; */
+    line-height: 26px;
+    font-weight: 300;
+}

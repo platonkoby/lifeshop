@@ -1,0 +1,31 @@
+.profile {
+    padding: 35px 0;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stat {
+    display: flex;
+    gap: 1rem;
+}
+
+.stat > h3 {
+    text-transform: capitalize;
+}
+
+.links {
+    margin-bottom: 50px;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
+}
