@@ -7,7 +7,7 @@ import Divider from './Divider'
 
 function Goals() {
   return (
-    <Page>
+    <Page page='goals'>
         <div className="goals">
           <Card header='Your favourites'>
             <DisplayList list={[]} />

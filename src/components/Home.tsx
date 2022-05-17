@@ -5,7 +5,7 @@ import '../styles/home.css'
 
 function Home() {
   return (
-        <Page>
+        <Page page='home'>
             <div className="home">
                 <h1 className='lifeshop'>lifeshop</h1>
                 <Card header='What is lifeshop?'>

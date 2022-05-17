@@ -7,7 +7,7 @@ import Divider from './Divider'
 
 function Shop() {
   return (
-    <Page>
+    <Page page='shop'>
       <div className="shop">
         <Card header='Your favourites'>
           <DisplayList list={[]} />
