@@ -4,10 +4,11 @@ import { MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md'
 import { MdOutlineMenu, MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { NavProps } from '../models/nav.models';
 
 const BUTTON_SIZE = 30;
 
-function Nav() {
+function Nav({ page } : NavProps) {
 
   const [toggleMenu, setToggleMenu] = useState(false)
 
@@ -18,7 +19,7 @@ function Nav() {
     <div className='nav-phone'>
       <div className="nav-left">
             <MdOutlineMenu onClick={toggleMenuAction} size={BUTTON_SIZE} />
-            <div className='current-page-name'>Shop</div>
+            <div className='current-page-name'>{page}</div>
       </div>
             <div className="icons">
                 <BsFillCartCheckFill size={BUTTON_SIZE} />

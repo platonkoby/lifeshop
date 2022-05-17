@@ -34,7 +34,7 @@ function Profile() {
   ]
 
   return (
-    <Page>
+    <Page page='profile'>
       <div className="profile">
         <Card header='Username'>
           <div className="stats">
