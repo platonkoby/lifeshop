@@ -15,3 +15,9 @@ const goalsRef = collection(db, 'goals')
 // get collections data requests
 
 export const productsRequest = getDocs(productsRef)
+
+// get stats reference
+
+const statsRef = collection(db, 'stats')
+
+export const statsRequest = getDocs(statsRef)
