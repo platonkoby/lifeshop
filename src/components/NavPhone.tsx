@@ -22,8 +22,10 @@ function Nav({ page } : NavProps) {
             <div className='current-page-name'>{page}</div>
       </div>
             <div className="icons">
+              <Link to={'/cart'}>
                 <BsFillCartCheckFill size={BUTTON_SIZE} />
-                <MdOutlineLightMode size={BUTTON_SIZE} />
+              </Link>
+              <MdOutlineLightMode size={BUTTON_SIZE} />
             </div>
         {toggleMenu && 
         <nav>

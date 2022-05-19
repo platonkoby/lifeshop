@@ -5,7 +5,7 @@ import DisplayList from './DisplayList'
 import SearchBar from './SearchBar'
 import Sorting from './Sorting'
 
-function ListSearch({ placeholder, list } : ListSearchProps) {
+function ListSearch({ placeholder, list, updateList } : ListSearchProps) {
 
     const [sorting, setSorting] = useState<SortingType>('most popular')
 
@@ -17,7 +17,7 @@ function ListSearch({ placeholder, list } : ListSearchProps) {
     <Card header='Search'>
         <SearchBar placeholder={placeholder} />
         <Sorting changeSortingTo={changeSortingTo} />
-        <DisplayList list={list} />
+        <DisplayList updateList={updateList} list={list} />
     </Card>
   )
 }
