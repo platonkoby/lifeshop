@@ -1,4 +1,4 @@
-import { EditListAction } from './cart.models';
+import { ModifyListAction } from './cart.models';
 import { UpdateList } from './global.models';
 import { Item, ShopItem } from './items.models';
 
@@ -7,7 +7,7 @@ export interface ListSearchProps extends SearchBarProps, DisplayListProps {}
 
 export interface DisplayListProps {
     list: Item[];
-    updateList: (item : ShopItem, action : EditListAction) => void;
+    updateList: (item : ShopItem, action : ModifyListAction) => void;
 }
 
 
@@ -23,6 +23,6 @@ export interface SortingProps {
 export type SortingType = 'most popular' | 'alphabetical';
 
 export interface ListItemProps {
-    updateList: (item : ShopItem, action : EditListAction) => void;
+    updateList: (item : ShopItem, action : ModifyListAction) => void;
     item: Item
 }

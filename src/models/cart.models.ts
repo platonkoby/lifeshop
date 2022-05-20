@@ -3,12 +3,12 @@ import { GoalItem, Item, ShopItem } from "./items.models";
 
 export interface ShopContextType {
     itemList: ShopItem[];
-    updateList: (item: ShopItem, action: EditListAction) => void
+    updateList: (item: ShopItem, action: ModifyListAction) => void
 }
 
 export interface GoalsContextType {
     itemList: GoalItem[];
-    updateList: (item: GoalItem, action: EditListAction) => void
+    updateList: (item: GoalItem, action: ModifyListAction) => void
 }
 
 export interface CartContextType {
@@ -26,16 +26,16 @@ export interface CalculateBalance extends CartFuncProps {
     balance: number;
 }
 
-export interface EditListProps {
+export interface ModifyListProps {
     list: Item[];
     item: Item;
     setList: (callback : SetStateAction<GoalItem[]>) => void
 }
 
-export interface UpdateListProps extends EditListProps {
-    action: EditListAction
+export interface UpdateListProps extends ModifyListProps {
+    action: ModifyListAction
 }
 
 export type UpdateList = ({list, item, setList, action} : UpdateListProps) => void
 
-export type EditListAction = 'add' | 'remove';
+export type ModifyListAction = 'add' | 'remove';

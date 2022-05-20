@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { goalsRequest, shopRequest } from "../firebase/firestore";
 import { updateList } from "../Functions/CartLogick";
 import { retrieveData } from "../Functions/DbFuncs";
-import { EditListAction, GoalsContextType, ShopContextType } from "../models/cart.models";
+import { ModifyListAction, GoalsContextType, ShopContextType } from "../models/cart.models";
 import { Children } from "../models/global.models";
 import { GoalItem, ShopItem } from "../models/items.models";
 
@@ -19,12 +19,12 @@ export const GoalInventoryContext = createContext<GoalsContextType>({
 export default function InventoryContextProvider({ children } : Children) {
 
     const [shopInventory, setShopInventory] = useState<ShopItem[]>([]);
-    const updateShopInventory = (item: ShopItem, action: EditListAction) => {
+    const updateShopInventory = (item: ShopItem, action: ModifyListAction) => {
         updateList({list: shopInventory, item, setList: setShopInventory, action})
     }
 
     const [goalsInventory, setGoalsInventory] = useState<GoalItem[]>([])
-    const updateGoalsInventory = (item: GoalItem, action: EditListAction) => {
+    const updateGoalsInventory = (item: GoalItem, action: ModifyListAction) => {
         updateList({list: goalsInventory, item, setList: setGoalsInventory, action})
     }
 
