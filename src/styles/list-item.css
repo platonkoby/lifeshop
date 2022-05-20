@@ -10,6 +10,7 @@
 
 .item-body{
     all: unset;
+    min-width: 130px;
     width: auto;
     height: auto;
     padding: 10px 5px;

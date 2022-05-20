@@ -1,5 +1,5 @@
 import '../styles/nav.css'
-import { BsFillCartCheckFill, BsFillCartDashFill } from 'react-icons/bs'
+import { BsCart, BsFillCartCheckFill, BsFillCartDashFill } from 'react-icons/bs'
 import { MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md'
 import { MdOutlineMenu, MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom';
@@ -27,7 +27,12 @@ function Nav({ page } : NavProps) {
       </div>
             <div className="icons">
               <Link to={'/cart'}>
-                <BsFillCartCheckFill color={cartBalance < 0 ? 'red' : 'green'} size={BUTTON_SIZE} />
+                {cartBalance < 0 
+                && <BsFillCartDashFill color='red' size={BUTTON_SIZE} />}
+                {cartBalance > 0
+                && <BsFillCartCheckFill color='green' size={BUTTON_SIZE} />}
+                {cartBalance === 0
+                && <BsCart color='green' size={BUTTON_SIZE} />}
               </Link>
               <MdOutlineLightMode size={BUTTON_SIZE} />
             </div>
