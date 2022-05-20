@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { NavProps } from '../models/nav.models';
 import { CartContext } from '../context/CartContext';
-
-const BUTTON_SIZE = 30;
+import { getButtonSize } from '../Functions/GlobalFunctions';
 
 function Nav({ page } : NavProps) {
 
@@ -22,23 +21,23 @@ function Nav({ page } : NavProps) {
   return (
     <div className='nav-phone'>
       <div className="nav-left">
-            <MdOutlineMenu onClick={toggleMenuAction} size={BUTTON_SIZE} />
+            <MdOutlineMenu onClick={toggleMenuAction} size={getButtonSize()} />
             <div className='current-page-name'>{page}</div>
       </div>
             <div className="icons">
               <Link to={'/cart'}>
                 {cartBalance < 0 
-                && <BsFillCartDashFill color='red' size={BUTTON_SIZE} />}
+                && <BsFillCartDashFill color='red' size={getButtonSize()} />}
                 {cartBalance > 0
-                && <BsFillCartCheckFill color='green' size={BUTTON_SIZE} />}
+                && <BsFillCartCheckFill color='green' size={getButtonSize()} />}
                 {cartBalance === 0
-                && <BsCart color='green' size={BUTTON_SIZE} />}
+                && <BsCart color='green' size={getButtonSize()} />}
               </Link>
-              <MdOutlineLightMode size={BUTTON_SIZE} />
+              <MdOutlineLightMode size={getButtonSize()} />
             </div>
         {toggleMenu && 
         <nav>
-            <MdClose onClick={toggleMenuAction} size={BUTTON_SIZE} className="close-menu-button" />
+            <MdClose onClick={toggleMenuAction} size={getButtonSize()} className="close-menu-button" />
             <ul>
                 <li>
                   <Link className='link' to='/'>home</Link>

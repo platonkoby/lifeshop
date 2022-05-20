@@ -1,4 +1,4 @@
-import { CalculateBalance, CalculateSumProps, EditListProps, UpdateListProps } from "../models/cart.models"
+import { CalculateBalance, CalculateSumProps, ModifyListProps, UpdateListProps } from "../models/cart.models"
 import { Item } from "../models/items.models"
 
 export class Cart {
@@ -31,13 +31,13 @@ const decreaseItemAmount = (list: Item[], item: Item) => (
         )
 )
 
-const addItemToList = ({list, item, setList} : EditListProps) => (
+const addItemToList = ({list, item, setList} : ModifyListProps) => (
     list.find(listItem => item.name === listItem.name)
             ? setList((goalList) => increaseItemAmount(goalList, item))
             : setList((goalList) => [...goalList, {...item, amount: 1}])
 )
 
-const removeItemFromList = ({list, item, setList} : EditListProps) => (
+const removeItemFromList = ({list, item, setList} : ModifyListProps) => (
     list.find(listItem => listItem.name === item.name)
         && setList((goalList) => decreaseItemAmount(goalList, item))
 )

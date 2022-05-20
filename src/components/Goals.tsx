@@ -8,14 +8,14 @@ import { useContext, useEffect } from 'react'
 import { GoalsContext } from '../context/CartContext'
 import { GoalInventoryContext } from '../context/InventoryContext'
 import { GoalItem } from '../models/items.models'
-import { EditListAction } from '../models/cart.models'
+import { ModifyListAction } from '../models/cart.models'
 
 function Goals() {
 
   const { itemList: inventoryItems, updateList: updateInventory } = useContext(GoalInventoryContext)
   const { itemList: cartItems, updateList: updateCart } = useContext(GoalsContext)
 
-  const updateList = (item: GoalItem, action : EditListAction) => {
+  const updateList = (item: GoalItem, action : ModifyListAction) => {
     updateInventory(item, action)
     updateCart(item, action)
   }

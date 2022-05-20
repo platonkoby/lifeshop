@@ -3,7 +3,7 @@ import { goalItemsInCartRequest, shopItemsInCartRequest } from "../firebase/fire
 import { Cart, updateList } from "../Functions/CartLogick";
 import { retrieveData } from "../Functions/DbFuncs";
 import { add } from "../Functions/GlobalFunctions";
-import { GoalsContextType, ShopContextType, EditListAction, CartContextType } from "../models/cart.models";
+import { GoalsContextType, ShopContextType, ModifyListAction, CartContextType } from "../models/cart.models";
 import { Children } from "../models/global.models";
 import { GoalItem, ShopItem } from "../models/items.models";
 import { BalanceContext } from "./StatsContext";
@@ -27,12 +27,12 @@ export default function CartContextProvider({ children } : Children) {
     const {updateBalance} = useContext(BalanceContext)
     
     const [shopList, setShopList] = useState<ShopItem[]>([])
-    const updateShopList = (item : ShopItem, action: EditListAction) => {
+    const updateShopList = (item : ShopItem, action: ModifyListAction) => {
         updateList({list: shopList, item, setList: setShopList, action})
     }
 
     const [goalList, setGoalList] = useState<GoalItem[]>([])
-    const updateGoalList = (item : GoalItem, action : EditListAction) => {
+    const updateGoalList = (item : GoalItem, action : ModifyListAction) => {
         updateList({list: goalList, item, setList: setGoalList, action})
     }
 

@@ -8,14 +8,14 @@ import { useContext, useEffect } from 'react'
 import { ShopContext } from '../context/CartContext'
 import { ShopInventoryContext } from '../context/InventoryContext'
 import { ShopItem } from '../models/items.models'
-import { EditListAction } from '../models/cart.models'
+import { ModifyListAction } from '../models/cart.models'
 
 function Shop() {
 
   const { itemList, updateList: updateInventory } = useContext(ShopInventoryContext)
   const { itemList: items, updateList: updateCart } = useContext(ShopContext)
 
-  const updateList = (item : ShopItem, action : EditListAction) => {
+  const updateList = (item : ShopItem, action : ModifyListAction) => {
     updateInventory(item, action)
     updateCart(item, action)
   }
@@ -43,5 +43,3 @@ function Shop() {
 }
 
 export default Shop
-
-//TODO: page for creating goals and products

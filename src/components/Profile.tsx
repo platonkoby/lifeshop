@@ -55,8 +55,8 @@ function Profile() {
         <Card header=''>
           <div className="links">
             <CustomLink to='/stats'>Stats</CustomLink>
-            <CustomLink to='/manage-shop'>Manage Shop</CustomLink>
-            <CustomLink to='manage-goals'>Manage Goals</CustomLink>
+            <CustomLink to='/edit-shop-inventory'>Manage Shop</CustomLink>
+            <CustomLink to='/edit-goal-inventory'>Manage Goals</CustomLink>
             <CustomLink to='/account-setting'>Account Settings</CustomLink>
           </div>
         </Card>
