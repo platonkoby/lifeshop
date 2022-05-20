@@ -7,17 +7,20 @@ export const BalanceContext = createContext({
     updateBalance: (sum : number) => {}
 });
 
-
 export default function StatsContextProvider({ children } : Children) {
 
     const [balance, setBalance] = useState(0);
 
-  const updateBalance = (sum : number) => {
+    const updateBalance = (sum : number) => {
     setBalance((balance) => balance + sum)
   }
 
     useEffect(() => {
-        const statsData = statsRequest
+        console.log(balance)
+    }, [balance])
+
+    useEffect(() => {
+        statsRequest
         .then((snapshot) => snapshot.docs.map((stat) => stat.data()))
         .then((stats) => stats.find(item => item.name === 'balance'))
         .then((balance) => setBalance(balance?.value))

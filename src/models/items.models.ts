@@ -2,13 +2,13 @@ export interface Item {
     name: string;
     value: number;
     amount: number;
-    type: 'goal item' | 'shop item';
+    type: ItemType;
 }
-
-export interface ShopItem extends Item {
-
-}
-
 export interface GoalItem extends Item {
     
 }
+export interface ShopItem extends Item {
+    
+}
+
+type ItemType = 'goal item' | 'shop item'

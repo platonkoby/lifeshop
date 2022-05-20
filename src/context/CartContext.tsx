@@ -1,7 +1,12 @@
-import { createContext, useState } from "react";
-import { CalculateSumProps, CalculateBalance, GoalsContextType, ShopContextType, UpdateListProps, EditListProps, EditListAction } from "../models/cart.models";
+import { createContext, useContext, useEffect, useState } from "react";
+import { goalItemsInCartRequest, shopItemsInCartRequest } from "../firebase/firestore";
+import { Cart, updateList } from "../Functions/CartLogick";
+import { retrieveData } from "../Functions/DbFuncs";
+import { add } from "../Functions/GlobalFunctions";
+import { GoalsContextType, ShopContextType, EditListAction, CartContextType } from "../models/cart.models";
 import { Children } from "../models/global.models";
-import { GoalItem, Item, ShopItem } from "../models/items.models";
+import { GoalItem, ShopItem } from "../models/items.models";
+import { BalanceContext } from "./StatsContext";
 
 export const ShopContext = createContext<ShopContextType>({
     itemList: [],
@@ -13,7 +18,13 @@ export const GoalsContext = createContext<GoalsContextType>({
     updateList: () => {}
 });
 
+export const CartContext = createContext<CartContextType>({
+    cartBalance: 0
+})
+
 export default function CartContextProvider({ children } : Children) {
+
+    const {updateBalance} = useContext(BalanceContext)
     
     const [shopList, setShopList] = useState<ShopItem[]>([])
     const updateShopList = (item : ShopItem, action: EditListAction) => {
@@ -25,66 +36,32 @@ export default function CartContextProvider({ children } : Children) {
         updateList({list: goalList, item, setList: setGoalList, action})
     }
 
+    const [cartBalance, setCartBalance] = useState(0)
+
+    // calculate cart balance
+    useEffect(() => {
+        setCartBalance(Cart.CalculateSum({goalItems: goalList, shopItems: shopList}))
+    }, [shopList, goalList])
+
+    useEffect(() => {console.log(cartBalance)}, [cartBalance])
+
+    // retrieve lists from database
+    useEffect(() => {
+        retrieveData(shopItemsInCartRequest, setShopList)
+    },[])
+
+    useEffect(() => {
+        retrieveData(goalItemsInCartRequest, setGoalList)
+    }, [])
+
     return (
         <ShopContext.Provider value={{itemList: shopList, updateList: updateShopList}}>
             <GoalsContext.Provider value={{itemList: goalList, updateList: updateGoalList}}>
-                {children}
+                <CartContext.Provider value={{cartBalance: cartBalance}}>
+                    {children}
+                </CartContext.Provider>
             </GoalsContext.Provider>
         </ShopContext.Provider>
     )        
 }
 
-export class Cart {
-    static CalculateSum({shopItems, goalItems} : CalculateSumProps) {
-
-        return addValuesInList(goalItems) + addValuesInList(shopItems)
-    }
-
-    static CalculateBalance({shopItems, goalItems, balance} : CalculateBalance) {
-
-        return balance + this.CalculateSum({shopItems, goalItems})
-    }
-
-    
-}
-
-const addValuesInList = (list : Item[]) => (
-    list
-        .map(item => item.value)
-        .reduce((n, n1) => n + n1)
-)
-
-const increaseItemAmount = (list: Item[], item: Item) => (
-    list
-        .map(listItem => listItem.name === item.name 
-            ? {...listItem, amount: listItem.amount + item.amount}
-            : listItem
-            )
-)
-
-const decreaseItemAmount = (list: Item[], item: Item) => (
-    list
-    .map(listItem => listItem.name === item.name
-            ? {...listItem, amount: listItem.amount - item.amount} 
-            : listItem
-        )
-    .filter(listItem => listItem.amount  > 0)
-)
-
-const addItemToList = ({list, item, setList} : EditListProps) => (
-    list.find(listItem => item.name === listItem.name)
-            ? setList((goalList) => increaseItemAmount(goalList, item))
-            : setList((goalList) => [...goalList, item])
-)
-
-const removeItemFromList = ({list, item, setList} : EditListProps) => (
-    list.find(listItem => listItem.name === item.name)
-        && setList((goalList) => decreaseItemAmount(goalList, item))
-)
-
-function updateList({list, item, setList, action} : UpdateListProps) {
-    action === 'add'
-        ? addItemToList({list, item, setList})
-        : removeItemFromList({list, item, setList})
-}
-    

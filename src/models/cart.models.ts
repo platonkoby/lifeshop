@@ -11,6 +11,10 @@ export interface GoalsContextType {
     updateList: (item: GoalItem, action: EditListAction) => void
 }
 
+export interface CartContextType {
+    cartBalance: number;
+}
+
 interface CartFuncProps {
     goalItems: GoalItem[];
     shopItems: ShopItem[];
@@ -31,5 +35,7 @@ export interface EditListProps {
 export interface UpdateListProps extends EditListProps {
     action: EditListAction
 }
+
+export type UpdateList = ({list, item, setList, action} : UpdateListProps) => void
 
 export type EditListAction = 'add' | 'remove';
