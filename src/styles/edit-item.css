@@ -1,3 +1,13 @@
+.organize-items {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.create-item {
+    margin-top: 20px;
+}
+
 .edit-item {
     display: flex;
     flex-direction: column;

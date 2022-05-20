@@ -3,7 +3,8 @@ export interface EditInventoryProps {
 }
 
 export interface EditListProps {
-    list: string[]
+    list: string[];
+    showCreateItem: boolean;
 }
 
 export interface EditItemProps {
