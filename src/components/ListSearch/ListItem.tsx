@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
+import { ListItemProps } from '../../models/list_search.models'
 import '../../styles/list-item.css'
 
-function ListItem() {
+function ListItem({ updateList, item } : ListItemProps) {
+
 
   return (
     <div className='list-item'>
-      <div className="count-cirle">
+      <div className="count-cirle" style={{visibility: item.amount > 0 ? 'visible' : 'hidden'}}>
         <div className="count">
-          4
+          {item.amount}
         </div>
       </div>
-      <div className="item-body">
-        <div className="item-name">work for 1 hour</div>
-        <div className="sum">+200</div>
-      </div>
+      <button className="item-body" onClick={() => updateList({...item}, 'add')}>
+        <div className="item-name">{item.name}</div>
+        <div className="sum">{item.type === 'goal item' ? '+' : '-'}{item.value}</div>
+      </button>
     </div>
   )
 }

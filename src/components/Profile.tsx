@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid'
 import '../styles/profile.css'
 import CustomLink from './CustomLink'
 import { useContext, useEffect } from 'react'
-import { BalanceContext } from '../context/Stats'
+import { BalanceContext } from '../context/StatsContext'
 
 function Profile() {
 

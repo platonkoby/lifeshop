@@ -8,13 +8,18 @@ const db = getFirestore(app)
 
 // get collections references
 
-export const productsRef = collection(db, 'products')
+const shopRef = collection(db, 'products')
 const goalsRef = collection(db, 'goals')
+const shopItemsInCartRef = collection(db, 'productsInCart')
+const goalItemsInCartRef = collection(db, 'goalsInCart')
 
 
 // get collections data requests
 
-export const productsRequest = getDocs(productsRef)
+export const shopRequest = getDocs(shopRef)
+export const goalsRequest = getDocs(goalsRef)
+export const shopItemsInCartRequest = getDocs(shopItemsInCartRef)
+export const goalItemsInCartRequest = getDocs(goalItemsInCartRef)
 
 // get stats reference
 

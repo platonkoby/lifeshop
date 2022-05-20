@@ -3,17 +3,21 @@ import { BsFillCartCheckFill, BsFillCartDashFill } from 'react-icons/bs'
 import { MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md'
 import { MdOutlineMenu, MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { NavProps } from '../models/nav.models';
+import { CartContext } from '../context/CartContext';
 
 const BUTTON_SIZE = 30;
 
 function Nav({ page } : NavProps) {
 
+  const { cartBalance } = useContext(CartContext)
+
   const [toggleMenu, setToggleMenu] = useState(false)
 
   const toggleMenuAction = () => 
     setToggleMenu(toggleMenu => !toggleMenu)
+
 
   return (
     <div className='nav-phone'>
@@ -22,8 +26,10 @@ function Nav({ page } : NavProps) {
             <div className='current-page-name'>{page}</div>
       </div>
             <div className="icons">
-                <BsFillCartCheckFill size={BUTTON_SIZE} />
-                <MdOutlineLightMode size={BUTTON_SIZE} />
+              <Link to={'/cart'}>
+                <BsFillCartCheckFill color={cartBalance < 0 ? 'red' : 'green'} size={BUTTON_SIZE} />
+              </Link>
+              <MdOutlineLightMode size={BUTTON_SIZE} />
             </div>
         {toggleMenu && 
         <nav>
