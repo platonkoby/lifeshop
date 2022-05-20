@@ -44,5 +44,4 @@ function Shop() {
 
 export default Shop
 
-//TODO: make sure amount increases for that pass itemInCart with inventoryItem
-//TODO: finish functionality of Cart and Invetory items
+//TODO: page for creating goals and products
