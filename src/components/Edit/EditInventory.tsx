@@ -8,25 +8,26 @@ import { IoMdAdd } from 'react-icons/io'
 import '../../styles/edit-inventory.css'
 import { getButtonSize } from '../../Functions/GlobalFunctions'
 import { useState } from 'react'
+import { EditInventoryProps } from '../../models/edit.inventory.models'
 
-function EditInventory() {
+function EditInventory({ itemList, page, updateList } : EditInventoryProps) {
 
   const [showCreateItem, setShowCreateItem] = useState(false)
 
   const toggleCreateItem = () => setShowCreateItem((showCreateItem) => !showCreateItem)
 
-    const changeSortingTo = (sorting : SortingType) => {}
+  const changeSortingTo = (sorting : SortingType) => {}
 
   return (
     <Page page='edit'>
         <div className="edit-inventory">
-            <Card header='Goals'>
+            <Card header={page}>
                 <div className="organize-items">
                   <Sorting changeSortingTo={changeSortingTo} />
                   <IoMdAdd onClick={toggleCreateItem} color='green' size={getButtonSize()} />
                 </div>
                 <Divider />
-                <EditList showCreateItem={showCreateItem} list={['one', 'two', 'three']} />
+                <EditList showCreateItem={showCreateItem} list={itemList} updateList={updateList} />
             </Card>
         </div>
     </Page>

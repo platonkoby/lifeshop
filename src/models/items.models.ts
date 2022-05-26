@@ -3,6 +3,8 @@ export interface Item {
     value: number;
     amount: number;
     type: ItemType;
+    categories: string[];
+    favourite?: boolean;
 }
 export interface GoalItem extends Item {
     

@@ -2,16 +2,18 @@ import { createContext, useEffect, useState } from "react";
 import { goalsRequest, shopRequest } from "../firebase/firestore";
 import { updateList } from "../Functions/CartLogick";
 import { retrieveData } from "../Functions/DbFuncs";
-import { ModifyListAction, GoalsContextType, ShopContextType } from "../models/cart.models";
+import { modifyInventory } from "../Functions/InventoryLogick";
+import { ModifyListAction } from "../models/cart.models";
 import { Children } from "../models/global.models";
+import { GoalsInventoryContextType, ShopInventoryContextType } from "../models/inventory.models";
 import { GoalItem, ShopItem } from "../models/items.models";
 
-export const ShopInventoryContext = createContext<ShopContextType>({
+export const ShopInventoryContext = createContext<ShopInventoryContextType>({
     itemList: [],
     updateList: () => {}
 })
 
-export const GoalInventoryContext = createContext<GoalsContextType>({
+export const GoalInventoryContext = createContext<GoalsInventoryContextType>({
     itemList: [],
     updateList: () => {}
 })
@@ -19,13 +21,13 @@ export const GoalInventoryContext = createContext<GoalsContextType>({
 export default function InventoryContextProvider({ children } : Children) {
 
     const [shopInventory, setShopInventory] = useState<ShopItem[]>([]);
-    const updateShopInventory = (item: ShopItem, action: ModifyListAction) => {
-        updateList({list: shopInventory, item, setList: setShopInventory, action})
+    const updateShopInventory = (item: ShopItem, action: ModifyListAction | 'change' | 'delete') => {
+        modifyInventory({list: shopInventory, item, setList: setShopInventory, action})
     }
 
     const [goalsInventory, setGoalsInventory] = useState<GoalItem[]>([])
-    const updateGoalsInventory = (item: GoalItem, action: ModifyListAction) => {
-        updateList({list: goalsInventory, item, setList: setGoalsInventory, action})
+    const updateGoalsInventory = (item: GoalItem, action: ModifyListAction | 'change' | 'delete') => {
+        modifyInventory({list: goalsInventory, item, setList: setGoalsInventory, action})
     }
 
     //retrieve inventories from database

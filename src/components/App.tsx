@@ -36,6 +36,4 @@ function App() {
 
 export default App;
 
-//TODO: use actual goal/shop list for Inventory edit page
-//TODO: create and update item function
-//TODO: create adding item functionality
+//TODO: change the core functions to add() delete() edit() 
