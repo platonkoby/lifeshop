@@ -35,3 +35,5 @@ function App() {
 }
 
 export default App;
+
+//TODO: change the core functions to add() delete() edit() 
