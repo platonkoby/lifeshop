@@ -1,7 +1,7 @@
 import Card from '../Card'
 import Page from '../Page'
 import Sorting from '../ListSearch/Sorting'
-import { SortingType } from '../../models/list_search.models'
+import { SortingType } from '../../models/list.search.models'
 import EditList from './EditList'
 import Divider from '../Divider'
 import { IoMdAdd } from 'react-icons/io'

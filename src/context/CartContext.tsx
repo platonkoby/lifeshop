@@ -1,9 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { goalItemsInCartRequest, shopItemsInCartRequest } from "../firebase/firestore";
-import { Cart, updateList } from "../Functions/CartLogick";
+import { Cart, modifyCart} from "../Functions/CartLogick";
 import { retrieveData } from "../Functions/DbFuncs";
-import { add } from "../Functions/GlobalFunctions";
-import { GoalsContextType, ShopContextType, ModifyListAction, CartContextType } from "../models/cart.models";
+import { GoalsContextType, ShopContextType, CartContextType, UpdateCart } from "../models/cart.models";
 import { Children } from "../models/global.models";
 import { GoalItem, ShopItem } from "../models/items.models";
 import { BalanceContext } from "./StatsContext";
@@ -27,13 +26,13 @@ export default function CartContextProvider({ children } : Children) {
     const {updateBalance} = useContext(BalanceContext)
     
     const [shopList, setShopList] = useState<ShopItem[]>([])
-    const updateShopList = (item : ShopItem, action: ModifyListAction) => {
-        updateList({list: shopList, item, setList: setShopList, action})
+    const updateShopList : UpdateCart = (item, action) => {
+        modifyCart({list: shopList, item, setList: setShopList, action})
     }
 
     const [goalList, setGoalList] = useState<GoalItem[]>([])
-    const updateGoalList = (item : GoalItem, action : ModifyListAction) => {
-        updateList({list: goalList, item, setList: setGoalList, action})
+    const updateGoalList : UpdateCart = (item, action) => {
+        modifyCart({list: goalList, item, setList: setGoalList, action})
     }
 
     const [cartBalance, setCartBalance] = useState(0)
@@ -42,8 +41,6 @@ export default function CartContextProvider({ children } : Children) {
     useEffect(() => {
         setCartBalance(Cart.CalculateSum({goalItems: goalList, shopItems: shopList}))
     }, [shopList, goalList])
-
-    useEffect(() => {console.log(cartBalance)}, [cartBalance])
 
     // retrieve lists from database
     useEffect(() => {

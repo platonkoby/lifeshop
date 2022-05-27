@@ -8,35 +8,30 @@ import { useContext, useEffect } from 'react'
 import { ShopContext } from '../context/CartContext'
 import { ShopInventoryContext } from '../context/InventoryContext'
 import { ShopItem } from '../models/items.models'
-import { ModifyListAction } from '../models/cart.models'
+import { UpdateLists } from '../models/list.search.models'
 
 function Shop() {
 
   const { itemList, updateList: updateInventory } = useContext(ShopInventoryContext)
   const { itemList: items, updateList: updateCart } = useContext(ShopContext)
 
-  const updateList = (item : ShopItem, action : ModifyListAction) => {
+  const updateLists : UpdateLists = (item, action) => {
     updateInventory(item, action)
     updateCart(item, action)
   }
-
-  useEffect(() => {
-    console.log(items)
-    console.log(itemList)
-  }, [items, itemList])
 
   return (
     <Page page='shop'>
       <div className="shop">
         <Card header='Your favourites'>
-          <DisplayList updateList={updateList} list={itemList} />
+          <DisplayList updateLists={updateLists} list={itemList} />
         </Card>
         <Divider />
         <Card header='Most frequent'>
-          <DisplayList updateList={updateList} list={itemList} />
+          <DisplayList updateLists={updateLists} list={itemList} />
         </Card>
         <Divider />
-        <ListSearch updateList={() => {}} placeholder='Input product name' list={itemList} />
+        <ListSearch updateLists={() => {}} placeholder='Input product name' list={itemList} />
       </div>
     </Page>
   )

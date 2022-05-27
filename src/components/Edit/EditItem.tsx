@@ -13,7 +13,7 @@ function EditItem({ item, updateList } : EditItemProps) {
 
     const toggleFavourite = () => {
       setIsFavourite((isFavourite) => !isFavourite)
-      // updateList({...item, favourite: !item.favourite }, 'change')
+      updateList({...item, favourite: !item.favourite }, 'update')
     }
 
     const deleteItem = () => {

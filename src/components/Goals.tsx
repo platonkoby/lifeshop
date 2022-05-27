@@ -7,36 +7,38 @@ import Divider from './Divider'
 import { useContext, useEffect } from 'react'
 import { GoalsContext } from '../context/CartContext'
 import { GoalInventoryContext } from '../context/InventoryContext'
-import { GoalItem } from '../models/items.models'
-import { ModifyListAction } from '../models/cart.models'
+import { GoalItem, Item } from '../models/items.models'
+import { UpdateLists } from '../models/list.search.models'
 
 function Goals() {
 
   const { itemList: inventoryItems, updateList: updateInventory } = useContext(GoalInventoryContext)
   const { itemList: cartItems, updateList: updateCart } = useContext(GoalsContext)
 
-  const updateList = (item: GoalItem, action : ModifyListAction) => {
+  const updateLists : UpdateLists = (item, action) => {
     updateInventory(item, action)
     updateCart(item, action)
   }
 
+  // useEffect(() => {
+  //   console.log(cartItems)
+  // }, [cartItems])
   useEffect(() => {
-    console.log(cartItems)
     console.log(inventoryItems)
-  } ,[inventoryItems, cartItems])
+  }, [inventoryItems])
 
   return (
     <Page page='goals'>
         <div className="goals">
           <Card header='Your favourites'>
-            <DisplayList updateList={updateList} list={inventoryItems} />
+            <DisplayList updateLists={updateLists} list={inventoryItems} />
           </Card>
           <Divider />
           <Card header='Most frequent'>
-            <DisplayList updateList={updateList} list={inventoryItems} />
+            <DisplayList updateLists={updateLists} list={inventoryItems} />
           </Card>
           <Divider />
-          <ListSearch updateList={() => {}} placeholder='Search goals' list={[]} />
+          <ListSearch updateLists={() => {}} placeholder='Search goals' list={[]} />
         </div>
     </Page>
   )
