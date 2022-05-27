@@ -1,4 +1,4 @@
-import { SortingProps } from '../../models/list_search.models'
+import { SortingProps } from '../../models/list.search.models'
 import { nanoid } from 'nanoid'
 import '../../styles/sorting.css'
 

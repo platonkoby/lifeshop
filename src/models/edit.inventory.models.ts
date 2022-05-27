@@ -1,10 +1,9 @@
 import StringDetail from "../components/Edit/Detail";
 import { Item } from "./items.models";
-import { ModifyListAction } from './cart.models'
-import { UpdateInventoryList } from "./inventory.models";
+import { UpdateInventory } from "./inventory.models";
 
 export interface EditInventoryProps {
-    updateList: UpdateInventoryList;
+    updateList: UpdateInventory;
     itemList: Item[];
     page: string;
 }
@@ -12,12 +11,12 @@ export interface EditInventoryProps {
 export interface EditListProps {
     list: Item[];
     showCreateItem: boolean;
-    updateList: UpdateInventoryList;   
+    updateList: UpdateInventory;   
 }
 
 export interface EditItemProps {
     item: Item;
-    updateList: UpdateInventoryList;
+    updateList: UpdateInventory;
 }
 
 export type StringDetailProps =

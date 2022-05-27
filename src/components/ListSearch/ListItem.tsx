@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
-import { ListItemProps } from '../../models/list_search.models'
+import { ListItemProps } from '../../models/list.search.models'
 import '../../styles/list-item.css'
 
-function ListItem({ updateList, item } : ListItemProps) {
+function ListItem({ updateLists, item } : ListItemProps) {
 
 
   return (
@@ -13,7 +13,7 @@ function ListItem({ updateList, item } : ListItemProps) {
           {item.amount}
         </div>
       </div>
-      <button className="item-body" onClick={() => updateList({...item}, 'add')}>
+      <button className="item-body" onClick={() => updateLists({...item}, 'increment')}>
         <div className="item-name">{item.name}</div>
         <div className="sum">{item.type === 'goal item' ? '+' : '-'}{item.value}</div>
       </button>

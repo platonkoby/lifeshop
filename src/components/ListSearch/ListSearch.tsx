@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { ListSearchProps, SortingType } from '../../models/list_search.models'
+import { ListSearchProps, SortingType } from '../../models/list.search.models'
 import Card from '../Card'
 import DisplayList from './DisplayList'
 import SearchBar from './SearchBar'
 import Sorting from './Sorting'
 
-function ListSearch({ placeholder, list, updateList } : ListSearchProps) {
+function ListSearch({ placeholder, list, updateLists } : ListSearchProps) {
 
     const [sorting, setSorting] = useState<SortingType>('most popular')
 
@@ -17,7 +17,7 @@ function ListSearch({ placeholder, list, updateList } : ListSearchProps) {
     <Card header='Search'>
         <SearchBar placeholder={placeholder} />
         <Sorting changeSortingTo={changeSortingTo} />
-        <DisplayList updateList={updateList} list={list} />
+        <DisplayList updateLists={updateLists} list={list} />
     </Card>
   )
 }

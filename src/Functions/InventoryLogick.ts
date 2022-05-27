@@ -1,23 +1,23 @@
-import { ModifyListProps, UpdateListProps } from "../models/cart.models";
-import { ModifyInventoryProps } from "../models/inventory.models";
-import { updateList } from "./CartLogick";
+import { ModifyList } from "../models/items.models";
+import { decreaseItemAmount, deleteItem, increaseItemAmount, updateItem } from "./ItemLogick";
 
-const changeInventoryList = ({ list, item, setList } : ModifyListProps) => {
-    const newList = list.filter((oldItem) => item.name !== oldItem.name)
-    console.log(item)
-    setList([...newList, item])
-}
 
-const deleteItem = ({list, item, setList} : ModifyListProps) => {
-    setList((list) => list.filter(listItem => listItem.name !== item.name))
-}
+export const modifyInventory : ModifyList = ({list, item, setList, action}) => {
+    let newList = [...list]
 
-export const modifyInventory = ({list, item, setList, action} : ModifyInventoryProps) => {
     if (action === 'delete') {
-        deleteItem({list, item, setList})
-        return
+        newList = deleteItem(list, item)
     }
-    action === 'change'
-        ? changeInventoryList({list, item, setList})
-        : updateList({list, item, setList, action})
+    if (action === 'update') {
+        newList = updateItem(list, item)
+    }
+    if (action === 'increment') {
+        newList = increaseItemAmount(list, item)
+    }
+    if (action === 'decrement') {
+        newList = decreaseItemAmount(list, item)
+    }
+
+    setList(newList)
 }
+

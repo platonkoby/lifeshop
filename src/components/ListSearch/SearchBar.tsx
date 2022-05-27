@@ -1,4 +1,4 @@
-import { SearchBarProps } from '../../models/list_search.models'
+import { SearchBarProps } from '../../models/list.search.models'
 import { MdFilterAlt } from 'react-icons/md'
 import '../../styles/search-bar.css'
 import { SyntheticEvent } from 'react'

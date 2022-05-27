@@ -36,4 +36,4 @@ function App() {
 
 export default App;
 
-//TODO: change the core functions to add() delete() edit() 
+//TODO: make it so when the items in the manage shop/goals are updated, the cart balance is recalculated

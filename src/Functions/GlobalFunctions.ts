@@ -6,7 +6,13 @@ export const getButtonSize = () => 30
 
 export const getSmallButtonSize = () => 25
 
-
 export const isValidKey = (key : string, item : Item) : key is keyof typeof item => {
     return key in item
 }
+
+export const listAdd = <T>(list : T[], item : T) => [...list, item]
+
+
+export const listFilter = <T>(list: T[], item : T, filter : keyof T) => (
+    list.filter((lItem) => lItem[filter] !== item[filter])
+)

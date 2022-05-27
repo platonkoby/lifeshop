@@ -16,10 +16,6 @@ export default function StatsContextProvider({ children } : Children) {
   }
 
     useEffect(() => {
-        console.log(balance)
-    }, [balance])
-
-    useEffect(() => {
         statsRequest
         .then((snapshot) => snapshot.docs.map((stat) => stat.data()))
         .then((stats) => stats.find(item => item.name === 'balance'))

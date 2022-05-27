@@ -16,7 +16,7 @@ function EditItemDetails({ item, updateList } : EditItemProps) {
     }
     const updateItem = () => {
         if (currentItem.name === '') return
-        updateList(currentItem, 'change')
+        updateList(currentItem, 'update')
     }
 
   return (
