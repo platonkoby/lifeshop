@@ -7,10 +7,11 @@ import Divider from '../Divider'
 import { IoMdAdd } from 'react-icons/io'
 import '../../styles/edit-inventory.css'
 import { getButtonSize } from '../../Functions/GlobalFunctions'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { EditInventoryProps } from '../../models/edit.inventory.models'
+import { CartContext } from '../../context/CartContext'
 
-function EditInventory({ itemList, page, updateList } : EditInventoryProps) {
+function EditInventory({ itemList, page, updateLists } : EditInventoryProps) {
 
   const [showCreateItem, setShowCreateItem] = useState(false)
 
@@ -27,7 +28,7 @@ function EditInventory({ itemList, page, updateList } : EditInventoryProps) {
                   <IoMdAdd onClick={toggleCreateItem} color='green' size={getButtonSize()} />
                 </div>
                 <Divider />
-                <EditList showCreateItem={showCreateItem} list={itemList} updateList={updateList} />
+                <EditList showCreateItem={showCreateItem} list={itemList} updateList={updateLists} />
             </Card>
         </div>
     </Page>

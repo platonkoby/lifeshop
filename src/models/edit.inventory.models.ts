@@ -3,7 +3,7 @@ import { Item } from "./items.models";
 import { UpdateInventory } from "./inventory.models";
 
 export interface EditInventoryProps {
-    updateList: UpdateInventory;
+    updateLists: UpdateInventory;
     itemList: Item[];
     page: string;
 }
