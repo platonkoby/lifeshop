@@ -9,6 +9,7 @@ import { GoalsContext } from '../context/CartContext'
 import { GoalInventoryContext } from '../context/InventoryContext'
 import { GoalItem, Item } from '../models/items.models'
 import { UpdateLists } from '../models/list.search.models'
+import { favourites } from '../Functions/Sortings'
 
 function Goals() {
 
@@ -30,15 +31,19 @@ function Goals() {
   return (
     <Page page='goals'>
         <div className="goals">
-          <Card header='Your favourites'>
-            <DisplayList updateLists={updateLists} list={inventoryItems} />
-          </Card>
-          <Divider />
+          {favourites(inventoryItems).length > 0 &&
+          <>
+            <Card header='Your favourites'>
+              <DisplayList updateLists={updateLists} list={favourites(inventoryItems)} />
+            </Card>
+            <Divider />
+          </>
+          }
           <Card header='Most frequent'>
             <DisplayList updateLists={updateLists} list={inventoryItems} />
           </Card>
           <Divider />
-          <ListSearch updateLists={() => {}} placeholder='Search goals' list={[]} />
+          <ListSearch updateLists={updateLists} placeholder='Search goals' list={inventoryItems} />
         </div>
     </Page>
   )

@@ -9,6 +9,7 @@ import { ShopContext } from '../context/CartContext'
 import { ShopInventoryContext } from '../context/InventoryContext'
 import { ShopItem } from '../models/items.models'
 import { UpdateLists } from '../models/list.search.models'
+import { favourites } from '../Functions/Sortings'
 
 function Shop() {
 
@@ -23,15 +24,19 @@ function Shop() {
   return (
     <Page page='shop'>
       <div className="shop">
-        <Card header='Your favourites'>
-          <DisplayList updateLists={updateLists} list={itemList} />
-        </Card>
-        <Divider />
+        {favourites(itemList).length > 0 &&
+        <>
+          <Card header='Your favourites'>
+            <DisplayList updateLists={updateLists} list={favourites(itemList)} />
+          </Card>
+          <Divider />
+        </>
+        }
         <Card header='Most frequent'>
           <DisplayList updateLists={updateLists} list={itemList} />
         </Card>
         <Divider />
-        <ListSearch updateLists={() => {}} placeholder='Input product name' list={itemList} />
+        <ListSearch updateLists={updateLists} placeholder='Input product name' list={itemList} />
       </div>
     </Page>
   )

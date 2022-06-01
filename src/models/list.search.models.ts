@@ -16,9 +16,9 @@ export interface SearchBarProps  {
 
 export interface SortingProps {
     changeSortingTo: (sorting : SortingType) => void;
+    sorting: SortingType;
 }
 
-export type SortingType = 'most popular' | 'alphabetical';
 
 export interface ListItemProps {
     item: Item;
@@ -26,3 +26,5 @@ export interface ListItemProps {
 }
 
 export type UpdateLists = (item : Item, action: ListActionType ) => void;
+
+export type SortingType = 'oftenly used' | 'a-z' | 'highest value' | 'lowest value' | 'favourites first';

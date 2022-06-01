@@ -10,6 +10,7 @@ import { getButtonSize } from '../../Functions/GlobalFunctions'
 import { useContext, useEffect, useState } from 'react'
 import { EditInventoryProps } from '../../models/edit.inventory.models'
 import { CartContext } from '../../context/CartContext'
+import { sortList } from '../../Functions/Sortings'
 
 function EditInventory({ itemList, page, updateLists } : EditInventoryProps) {
 
@@ -17,18 +18,28 @@ function EditInventory({ itemList, page, updateLists } : EditInventoryProps) {
 
   const toggleCreateItem = () => setShowCreateItem((showCreateItem) => !showCreateItem)
 
-  const changeSortingTo = (sorting : SortingType) => {}
+  const [sorting, setSorting] = useState<SortingType>('a-z')
+
+  const [sortedList, setSortedList] = useState(itemList)
+
+  const changeSortingTo = (sorting : SortingType) => {
+    setSorting(sorting)
+  }
+
+  useEffect(() => {
+    setSortedList(sortList(itemList, sorting))
+  }, [itemList, sorting])
 
   return (
     <Page page='edit'>
         <div className="edit-inventory">
             <Card header={page}>
                 <div className="organize-items">
-                  <Sorting changeSortingTo={changeSortingTo} />
+                  <Sorting sorting={sorting} changeSortingTo={changeSortingTo} />
                   <IoMdAdd onClick={toggleCreateItem} color='green' size={getButtonSize()} />
                 </div>
                 <Divider />
-                <EditList showCreateItem={showCreateItem} list={itemList} updateList={updateLists} />
+                <EditList showCreateItem={showCreateItem} list={sortedList} updateList={updateLists} />
             </Card>
         </div>
     </Page>

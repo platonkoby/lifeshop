@@ -20,11 +20,6 @@ function Nav({ page } : NavProps) {
 
   const toggleMenuAction = () => 
     setToggleMenu(toggleMenu => !toggleMenu)
-
-  const updateCartBalance = () => {
-    const val = Cart.CalculateSum({goalItems: goalInventory, shopItems: shopInventory})
-    console.log(val)
-  }
     
   return (
     <div className='nav-phone'>
@@ -41,7 +36,7 @@ function Nav({ page } : NavProps) {
                 {cartBalance === 0
                 && <BsCart color='green' size={getButtonSize()} />}
               </Link>
-              <MdOutlineLightMode onClick={updateCartBalance} size={getButtonSize()} />
+              <MdOutlineLightMode size={getButtonSize()} />
             </div>
         {toggleMenu && 
         <nav>
