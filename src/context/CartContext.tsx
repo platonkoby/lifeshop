@@ -44,7 +44,6 @@ export default function CartContextProvider({ children } : Children) {
 
     useEffect(() => {
         calculateCartBalance()
-        console.log(shopList)
     }, [shopList, goalList])
 
     // retrieve lists from database
