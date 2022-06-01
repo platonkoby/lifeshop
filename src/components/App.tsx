@@ -36,4 +36,3 @@ function App() {
 
 export default App;
 
-//TODO: make it so when the items in the manage shop/goals are updated, the cart balance is recalculated

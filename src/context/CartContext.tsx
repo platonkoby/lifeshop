@@ -18,7 +18,7 @@ export const GoalsContext = createContext<GoalsContextType>({
 });
 
 export const CartContext = createContext<CartContextType>({
-    cartBalance: 0
+    cartBalance: 0,
 })
 
 export default function CartContextProvider({ children } : Children) {
@@ -38,8 +38,13 @@ export default function CartContextProvider({ children } : Children) {
     const [cartBalance, setCartBalance] = useState(0)
 
     // calculate cart balance
-    useEffect(() => {
+    const calculateCartBalance = () => {
         setCartBalance(Cart.CalculateSum({goalItems: goalList, shopItems: shopList}))
+    };
+
+    useEffect(() => {
+        calculateCartBalance()
+        console.log(shopList)
     }, [shopList, goalList])
 
     // retrieve lists from database

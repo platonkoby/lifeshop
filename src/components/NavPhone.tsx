@@ -7,17 +7,25 @@ import { useContext, useEffect, useState } from 'react';
 import { NavProps } from '../models/nav.models';
 import { CartContext } from '../context/CartContext';
 import { getButtonSize } from '../Functions/GlobalFunctions';
+import { GoalInventoryContext, ShopInventoryContext } from '../context/InventoryContext';
+import { Cart } from '../Functions/CartLogick';
+
 
 function Nav({ page } : NavProps) {
 
   const { cartBalance } = useContext(CartContext)
-
+  const { itemList: goalInventory } = useContext(GoalInventoryContext)
+  const { itemList: shopInventory } = useContext(ShopInventoryContext)
   const [toggleMenu, setToggleMenu] = useState(false)
 
   const toggleMenuAction = () => 
     setToggleMenu(toggleMenu => !toggleMenu)
 
-
+  const updateCartBalance = () => {
+    const val = Cart.CalculateSum({goalItems: goalInventory, shopItems: shopInventory})
+    console.log(val)
+  }
+    
   return (
     <div className='nav-phone'>
       <div className="nav-left">
@@ -33,7 +41,7 @@ function Nav({ page } : NavProps) {
                 {cartBalance === 0
                 && <BsCart color='green' size={getButtonSize()} />}
               </Link>
-              <MdOutlineLightMode size={getButtonSize()} />
+              <MdOutlineLightMode onClick={updateCartBalance} size={getButtonSize()} />
             </div>
         {toggleMenu && 
         <nav>

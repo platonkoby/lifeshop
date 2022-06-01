@@ -21,11 +21,11 @@ function Goals() {
   }
 
   // useEffect(() => {
-  //   console.log(cartItems)
+  //   console.log('cartItems')
   // }, [cartItems])
-  useEffect(() => {
-    console.log(inventoryItems)
-  }, [inventoryItems])
+  // useEffect(() => {
+  //   console.log(inventoryItems)
+  // }, [inventoryItems])
 
   return (
     <Page page='goals'>

@@ -21,3 +21,8 @@ export const decreaseItemAmount: ListAction = (list, item) => {
     const updatedList = listAdd(filteredList, {...item, amount: item.amount - 1})
     return updatedList
 }
+
+export const removeZeroAmountItems = (list : Item[]) => {
+    const updatedList = list.filter((item) => item.amount !== 0)
+    return updatedList
+}

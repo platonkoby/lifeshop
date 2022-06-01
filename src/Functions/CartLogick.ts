@@ -2,7 +2,7 @@ import { CalculateBalance, CalculateSumProps } from "../models/cart.models"
 import { ListAction } from "../models/inventory.models"
 import { Item, ModifyList } from "../models/items.models"
 import { listAdd } from "./GlobalFunctions"
-import { decreaseItemAmount, deleteItem, increaseItemAmount, updateItem } from "./ItemLogick"
+import { decreaseItemAmount, deleteItem, increaseItemAmount, removeZeroAmountItems, updateItem } from "./ItemLogick"
 
 export class Cart {
     public static CalculateSum({shopItems, goalItems} : CalculateSumProps) {
@@ -34,6 +34,8 @@ export const modifyCart : ModifyList = ({list, item, setList, action}) => {
         newList = decreaseItemAmount(list, item)
     }
     
+    newList = removeZeroAmountItems(newList)
+
     setList(newList)
 }
 
