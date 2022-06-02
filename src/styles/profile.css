@@ -12,11 +12,6 @@
     gap: 12px;
 }
 
-.stat {
-    display: flex;
-    gap: 1rem;
-}
-
 .stat > h3 {
     text-transform: capitalize;
 }

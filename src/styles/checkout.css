@@ -1,0 +1,67 @@
+.quick-stats {
+    margin: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+.bill {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.bill-items {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border: 1px solid rgba(142, 143, 142, 0.065);
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px;
+
+}
+
+.bill-divider {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.checkout-buttons {
+    margin: 50px 0;
+    display: flex;
+    width: inherit;
+    justify-content: center;
+}
+
+.checkout-pay {
+    all: unset;
+    padding: 12px 20px;
+    background-color: lightgreen;
+    border-radius: 5px;
+    font-size: 1.3rem;
+}
+
+.bill-item {
+    padding: 0 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bill-item-name {
+    font-size: 1.3rem;
+    word-wrap: break-word;
+    line-height: 1.75rem;
+    width: 60%;
+}
+
+.bill-item-value {
+    display: flex;
+    gap: 12px;
+    font-size: 1.3rem;
+}
