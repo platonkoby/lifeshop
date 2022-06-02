@@ -1,17 +1,18 @@
 import Page from './Page'
 import Card from './Card'
-import { Stat } from '../models/profile.models'
+import { StatType } from '../models/profile.models'
 import { nanoid } from 'nanoid'
 import '../styles/profile.css'
 import CustomLink from './CustomLink'
 import { useContext, useEffect } from 'react'
 import { BalanceContext } from '../context/StatsContext'
+import Stat from './Stat'
 
 function Profile() {
 
   const { balance, updateBalance } = useContext(BalanceContext)
 
-  const stats : Stat[] = [
+  const stats : StatType[] = [
     {
       name: 'balance',
       value: balance,
@@ -43,12 +44,7 @@ function Profile() {
         <Card header='Username'>
           <div className="stats">
             {stats.map(({name, value, color, items}) => 
-              <div className="stat" key={nanoid()}>
-                <h3>{name}:</h3>
-                <p style={{color: color}}>{ typeof value === 'number' 
-                  ? value 
-                  : items?.map(item => item) }</p>
-              </div>
+              <Stat name={name} value={value} color={color} items={items} key={nanoid()} />
             )}
           </div>
         </Card>
