@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { goalItemsInCartRequest, shopItemsInCartRequest } from "../firebase/firestore";
-import { Cart, modifyCart} from "../Functions/CartLogick";
+import { Cart, clearList, modifyCart} from "../Functions/CartLogick";
 import { retrieveData } from "../Functions/DbFuncs";
 import { GoalsContextType, ShopContextType, CartContextType, UpdateCart } from "../models/cart.models";
 import { Children } from "../models/global.models";
@@ -19,11 +19,10 @@ export const GoalsContext = createContext<GoalsContextType>({
 
 export const CartContext = createContext<CartContextType>({
     cartBalance: 0,
+    clearCart: () => {}
 })
 
 export default function CartContextProvider({ children } : Children) {
-
-    const {updateBalance} = useContext(BalanceContext)
     
     const [shopList, setShopList] = useState<ShopItem[]>([])
     const updateShopList : UpdateCart = (item, action) => {
@@ -36,11 +35,18 @@ export default function CartContextProvider({ children } : Children) {
     }
 
     const [cartBalance, setCartBalance] = useState(0)
+    const updateCartBalance = (bal : number) => setCartBalance(bal)
 
     // calculate cart balance
     const calculateCartBalance = () => {
         setCartBalance(Cart.CalculateSum({goalItems: goalList, shopItems: shopList}))
     };
+
+    //clear cart
+    const clearCart = () => {
+        clearList(setGoalList)
+        clearList(setShopList)
+    }
 
     useEffect(() => {
         calculateCartBalance()
@@ -58,7 +64,7 @@ export default function CartContextProvider({ children } : Children) {
     return (
         <ShopContext.Provider value={{itemList: shopList, updateList: updateShopList}}>
             <GoalsContext.Provider value={{itemList: goalList, updateList: updateGoalList}}>
-                <CartContext.Provider value={{cartBalance: cartBalance}}>
+                <CartContext.Provider value={{cartBalance: cartBalance, clearCart}}>
                     {children}
                 </CartContext.Provider>
             </GoalsContext.Provider>

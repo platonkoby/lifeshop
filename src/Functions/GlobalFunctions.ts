@@ -16,3 +16,15 @@ export const listAdd = <T>(list : T[], item : T) => [...list, item]
 export const listFilter = <T>(list: T[], item : T, filter : keyof T) => (
     list.filter((lItem) => lItem[filter] !== item[filter])
 )
+
+export const getColor = (value : number | undefined, negative : boolean) => {
+    if (typeof value === "undefined") return 'black'
+
+    if ( value >= 0 && !negative) return 'green'
+
+    if ( value > 0 && negative) return 'red'
+
+    if ( value < 0 && !negative ) return 'red'
+
+    return 'green'
+}

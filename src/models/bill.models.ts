@@ -5,9 +5,17 @@ export interface BillItemProps {
     name: string;
     value: number;
     amount?: number;
+    negative?: boolean;
 }
 
 export interface BillListProps {
     listName: string;
-    items?: Item[];
+    items: Item[];
+    negative?: boolean;
+}
+
+export interface BillProps {
+    balance: number;
+    goalList: Item[];
+    shopList: Item[];
 }

@@ -1,4 +1,5 @@
-import { ModifyList } from "../models/items.models";
+import { SetStateAction } from "react";
+import { Item, ModifyList } from "../models/items.models";
 import { decreaseItemAmount, deleteItem, increaseItemAmount, updateItem } from "./ItemLogick";
 
 
@@ -21,3 +22,6 @@ export const modifyInventory : ModifyList = ({list, item, setList, action}) => {
     setList(newList)
 }
 
+export const clearInventory = (list : Item[] , setList : (callback : SetStateAction<Item[]>) => void) => {
+    setList((list) => list.map(item => ({...item, amount: 0})));
+}
