@@ -16,17 +16,15 @@ function Profile() {
     {
       name: 'balance',
       value: balance,
-      color: 'green'
     },
     {
       name: 'earned today',
       value: 800,
-      color: 'green'
     },
     {
       name: 'spent today',
       value: 400,
-      color: 'red'
+      negative: true
     },
     {
       name: 'goals today',
@@ -43,8 +41,8 @@ function Profile() {
       <div className="profile">
         <Card header='Username'>
           <div className="stats">
-            {stats.map(({name, value, color, items}) => 
-              <Stat name={name} value={value} color={color} items={items} key={nanoid()} />
+            {stats.map(({name, value, negative, items}) => 
+              <Stat name={name} value={value} items={items} key={nanoid()} />
             )}
           </div>
         </Card>

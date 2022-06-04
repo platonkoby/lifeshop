@@ -13,6 +13,7 @@ export interface GoalsContextType {
 
 export interface CartContextType {
     cartBalance: number;
+    clearCart: () => void;
 }
 
 interface CartFuncProps {

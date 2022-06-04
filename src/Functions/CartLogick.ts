@@ -1,3 +1,4 @@
+import { SetStateAction } from "react"
 import { CalculateBalance, CalculateSumProps } from "../models/cart.models"
 import { ListAction } from "../models/inventory.models"
 import { Item, ModifyList } from "../models/items.models"
@@ -11,7 +12,7 @@ export class Cart {
     
 }
 
-const addValuesInList = (list : Item[]) => {
+export const addValuesInList = (list : Item[]) => {
     if (list.length === 0) return 0
     return list
         .map(item => item.value * item.amount)
@@ -39,3 +40,4 @@ export const modifyCart : ModifyList = ({list, item, setList, action}) => {
     setList(newList)
 }
 
+export const clearList = (setList : (callback : SetStateAction<Item[]>) => void) => setList([])
