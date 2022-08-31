@@ -13,6 +13,7 @@ import { BiDownArrow } from 'react-icons/bi'
 import Bill from './Bill/Bill'
 import { addValuesInList } from '../Functions/CartLogick'
 import { GoalInventoryContext, ShopInventoryContext } from '../context/InventoryContext'
+import { updateDailyStats } from '../Functions/DailyStatsLogick'
 
 function Checkout() {
 
@@ -29,6 +30,7 @@ function Checkout() {
     const { itemList: goalList, updateList: updateGoalList } = useContext(GoalsContext)
 
     const checkout = () => {
+      updateDailyStats(goalList, shopList)
       updateBalance(cartBalance)
       clearCart()
       clearShopInventory()
@@ -58,3 +60,4 @@ function Checkout() {
 }
 
 export default Checkout
+

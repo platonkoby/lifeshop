@@ -4,13 +4,19 @@ import { StatType } from '../models/profile.models'
 import { nanoid } from 'nanoid'
 import '../styles/profile.css'
 import CustomLink from './CustomLink'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { BalanceContext } from '../context/StatsContext'
 import Stat from './Stat'
+import { getDailyStats } from '../Functions/DailyStatsLogick'
+import { DailyStat } from '../models/stats.models'
+import { createDummyData, confirmLocalDataExists } from '../Functions/DbFuncs'
 
 function Profile() {
 
   const { balance, updateBalance } = useContext(BalanceContext)
+
+  const [dailyStats, setDailyStats] = useState<DailyStat[]>([])
+
 
   const stats : StatType[] = [
     {
@@ -36,13 +42,17 @@ function Profile() {
     }
   ]
 
+  useEffect(() => {
+    setDailyStats(getDailyStats())
+  }, [])
+
   return (
     <Page page='profile'>
       <div className="profile">
         <Card header='Username'>
           <div className="stats">
-            {stats.map(({name, value, negative, items}) => 
-              <Stat name={name} value={value} items={items} key={nanoid()} />
+            {dailyStats.map(({name, value, id}) => 
+              <Stat name={name} value={value} key={nanoid()} />
             )}
           </div>
         </Card>

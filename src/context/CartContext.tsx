@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { goalItemsInCartRequest, shopItemsInCartRequest } from "../firebase/firestore";
 import { Cart, clearList, modifyCart} from "../Functions/CartLogick";
-import { retrieveData } from "../Functions/DbFuncs";
+import { retrieveData, retrieveLocalData } from "../Functions/DbFuncs";
 import { GoalsContextType, ShopContextType, CartContextType, UpdateCart } from "../models/cart.models";
 import { Children } from "../models/global.models";
 import { GoalItem, ShopItem } from "../models/items.models";

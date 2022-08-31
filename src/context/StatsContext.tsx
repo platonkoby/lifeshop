@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { statsRequest } from "../firebase/firestore";
+import { updateToday } from "../Functions/Today";
 import { Children } from "../models/global.models";
 
 export const BalanceContext = createContext({
@@ -22,6 +23,10 @@ export default function StatsContextProvider({ children } : Children) {
         .then((balance) => setBalance(balance?.value))
 
     }, [])
+
+    // useEffect(() => {
+    //     updateToday()
+    // }, [])
 
     return (
         <BalanceContext.Provider value={{balance, updateBalance}}>

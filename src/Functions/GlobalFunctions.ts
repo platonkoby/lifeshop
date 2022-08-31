@@ -28,3 +28,13 @@ export const getColor = (value : number | undefined, negative : boolean) => {
 
     return 'green'
 }
+
+export const returnNumberIfNumber = (value : any) => {
+    return typeof value === 'number'
+    ? value
+    : undefined
+}
+
+export function stringArraysAreSame(old : string[], fresh : string[]) {
+    return fresh.every((freshItem) => old.some((oldItem) => oldItem === freshItem))
+}
