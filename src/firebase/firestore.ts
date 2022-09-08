@@ -1,4 +1,5 @@
-import { getDocs, collection, getFirestore, setDoc, doc, updateDoc } from 'firebase/firestore'
+import { getDocs, collection, getFirestore, setDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore'
+import { ShopItem } from '../models/items.models'
 import { app } from './firebase'
 
 // init firestore
@@ -36,9 +37,16 @@ export async function createDocumentInCollection(collection : string, path: stri
     await setDoc(doc(db, collection, path), obj)
 }
 
+
+
 // update a document
 
 export async function updateDocumentInCollection(collection : string, path : string, change : object) {
     await updateDoc(doc(db, collection, path), change)
 }
 
+// delete a document
+
+export async function deleteDocumentInCollection(collection : string, path : string, obj : object) {
+    await deleteDoc(doc(db, collection, path))
+}

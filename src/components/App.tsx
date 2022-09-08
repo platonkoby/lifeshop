@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import CartContextProvider from '../context/CartContext';
 import InventoryContextProvider from '../context/InventoryContext';
 import StatsContextProvider from '../context/StatsContext';
+import { createDocumentInCollection } from '../firebase/firestore';
 import { confirmLocalDataExists } from '../Functions/DbFuncs';
 import { updateToday } from '../Functions/Today';
 import Checkout from './Checkout';
@@ -49,5 +50,4 @@ function App() {
 
 export default App;
 
-
-//TODO: make sure that daily stats in db are set to their defaults when the reset happens
+// keep cart items in the local storage

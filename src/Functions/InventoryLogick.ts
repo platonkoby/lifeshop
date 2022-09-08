@@ -1,5 +1,6 @@
 import { SetStateAction } from "react";
 import { Item, ModifyList } from "../models/items.models";
+import { createItemInDb, removeItemInDb } from "./DbFuncs";
 import { decreaseItemAmount, deleteItem, increaseItemAmount, updateItem } from "./ItemLogick";
 
 
@@ -8,9 +9,11 @@ export const modifyInventory : ModifyList = ({list, item, setList, action}) => {
 
     if (action === 'delete') {
         newList = deleteItem(list, item)
+        removeItemInDb(item, item.type)
     }
     if (action === 'update') {
         newList = updateItem(list, item)
+        createItemInDb(item, item.type)
     }
     if (action === 'increment') {
         newList = increaseItemAmount(list, item)

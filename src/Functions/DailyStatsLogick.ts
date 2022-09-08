@@ -2,31 +2,29 @@ import { stat } from "fs";
 import { nanoid } from "nanoid";
 import { dailyStatsRequest, updateDocumentInCollection } from "../firebase/firestore";
 import { Item } from "../models/items.models";
-import { DailyStat, LocalData } from "../models/stats.models";
+import { DailyStat, GoalItems, LocalData, ShopItems, Today } from "../models/stats.models";
 import { nullDataError, retrieveLocalData, setLocalStorageData } from "./DbFuncs";
 import { stringArraysAreSame } from "./GlobalFunctions";
 import { getTime, getToday, setToday } from "./Today";
 
-export const localData : LocalData = {
-    GOAL_ITEMS: {
-        key: 'goal items',
+const GOAL_ITEMS : GoalItems = {
+        key: 'daily stats - goal items',
         value: { name: 'goal items', value: [], default: [], type: 'iterable', id: nanoid() },
         hasDefault: true,
-    },
-    SHOP_ITEMS: {
-        key: 'shop items',
+    }
+const SHOP_ITEMS : ShopItems = {
+        key: 'daily stats - shop items',
         value: { name: 'shop items', value: [], default: [], type: 'iterable', id: nanoid() },
         hasDefault: true,
-    },
-    TODAY: {
+    }
+const TODAY : Today = {
         key: 'today',
         value: getToday(),
         updateTime: getTime(),
         hasDefault: false,
     }
-}
 
-const { SHOP_ITEMS, GOAL_ITEMS } = localData
+export const localData : LocalData = { GOAL_ITEMS, SHOP_ITEMS, TODAY }
 
 export function getDailyStats() : DailyStat[] {
 

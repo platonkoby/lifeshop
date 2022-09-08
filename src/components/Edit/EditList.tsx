@@ -9,7 +9,7 @@ import EditItemDetails from './EditItemDetails'
 
 function EditList({ list, showCreateItem, updateList } : EditListProps) {
 
-  const newItem: Item = { name: '', amount: 0, value: 0, type: getItemType(list), categories: [] }
+  const newItem: Item = { name: '', amount: 0, value: 0, type: getItemType(list), categories: [], id: nanoid() }
 
   function getItemType (list: Item[]) {
     return list.some(item => item.type === 'shop item')

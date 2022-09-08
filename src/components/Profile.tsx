@@ -9,7 +9,7 @@ import { BalanceContext } from '../context/StatsContext'
 import Stat from './Stat'
 import { getDailyStats } from '../Functions/DailyStatsLogick'
 import { DailyStat } from '../models/stats.models'
-import { createDummyData, confirmLocalDataExists } from '../Functions/DbFuncs'
+import { confirmLocalDataExists } from '../Functions/DbFuncs'
 
 function Profile() {
 

@@ -1,16 +1,40 @@
-import { DocumentData, QuerySnapshot } from "firebase/firestore";
+import { DocumentData, QuerySnapshot, setDoc } from "firebase/firestore";
 import { nanoid } from "nanoid";
 import React from "react";
-import { Item } from "../models/items.models";
+import { createDocumentInCollection, deleteDocumentInCollection } from "../firebase/firestore";
+import { Item, ItemType, ShopItem } from "../models/items.models";
 import { LocalData } from "../models/stats.models";
 import { localData } from "./DailyStatsLogick";
 import { getTime, getToday } from "./Today";
 
 
+export const createItemInDb = async (item : Item, itemType: ItemType) => {
+    if (itemType === 'goal item') {
+
+        await createDocumentInCollection('goals', item.id, item )
+    } else if (itemType === 'shop item') {
+        
+        await createDocumentInCollection('products', item.id, item )
+    } else {
+        throw Error(`Item type ${itemType} does not exist`)
+    }
+}
+
+export const removeItemInDb = async (item : Item, itemType: ItemType) => {
+    if (itemType === 'goal item') {
+        await deleteDocumentInCollection('goals', item.id, item)
+    }
+    if (itemType === 'shop item') {
+        await deleteDocumentInCollection('products', item.id, item)
+    } else {
+        throw Error(`Item type ${itemType} does not exist`)
+    }
+}
 
 export const retrieveData = (request : Promise<QuerySnapshot<DocumentData>>, setAction : React.Dispatch<React.SetStateAction<Item[]>>) => (
     request
     .then((snapshot) => snapshot.docs.map((item) => item.data()))
+    .then((itemList) => itemList.map((item) => Object.defineProperties(item, {id: {enumerable: false}, amount: {enumerable: false}})))
     .then((itemList) => setAction([...itemList as Item[]]))
 )
 
@@ -25,11 +49,6 @@ export const setLocalStorageData = (key : string, value : any) => {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-export const createDummyData = () => 
-      localStorage.setItem('daily-stats', JSON.stringify([
-        {default: [], name: "shop items", value: [], type: 'iterable'},
-        {default: [], name: "goal items", value: [], type: 'iterable'}
-    ]))
 
 export const confirmLocalDataExists = () => {
     for (let item in localData) {

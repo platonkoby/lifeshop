@@ -4,8 +4,3 @@ export interface StatProps {
     negative?: boolean;
 }
 
-export interface Today {
-    name: "today",
-    updateTime: string,
-    value: string
-}

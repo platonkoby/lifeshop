@@ -7,6 +7,7 @@ export interface Item {
     type: ItemType;
     categories: string[];
     favourite?: boolean;
+    id: string
 }
 export interface GoalItem extends Item {
     
@@ -15,7 +16,7 @@ export interface ShopItem extends Item {
     
 }
 
-type ItemType = 'goal item' | 'shop item'
+export type ItemType = 'goal item' | 'shop item'
 
 export type ListActionType = 'update' | 'delete' | 'increment' | 'decrement';
 

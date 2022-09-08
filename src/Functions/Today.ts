@@ -1,5 +1,5 @@
 import { createDocumentInCollection, dailyStatsRequest, updateDocumentInCollection } from "../firebase/firestore";
-import { Today } from "../models/stat.models";
+import { Today } from "../models/stats.models";
 import { getDailyStats, refreshDailyStats } from "./DailyStatsLogick";
 import { setLocalStorageData } from "./DbFuncs";
 
@@ -10,7 +10,7 @@ export const getTime = () => {
 
 export function setToday(today : string) {
     setLocalStorageData("today", {
-        name: 'today', value: today, updateTime: getTime(),
+        key: 'today', value: today, updateTime: getTime(), hasDefault: false
     })
 }
 

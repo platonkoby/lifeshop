@@ -13,7 +13,7 @@ function ListItem({ updateLists, item } : ListItemProps) {
           {item.amount}
         </div>
       </div>
-      <button className="item-body" onClick={() => updateLists({...item}, 'increment')}>
+      <button className="item-body" onClick={() => updateLists({...item, amount: item.amount}, 'increment')}>
         <div className="item-name">{item.name}</div>
         <div className="sum">{item.type === 'goal item' ? '+' : '-'}{item.value}</div>
       </button>
